@@ -16,12 +16,36 @@ const { generarJWT } = require('../helpers/jwt');
 //Metodo GET de Usuarios 
 const getUsuarios = async(req, res) => {
 
-    const usuarios = await Usuario.find({}, 'nombre email role google' ); //=> aqui estoy buscando todos los elementos de la coleccion, con el {},'nombre ...' esto definiendo el filtro de los elementos que quiero que me retorne
+    const desde = Number(req.query.desde) || 0;
+
+    //const usuarios = await Usuario.find({}, 'nombre email role google' ) //=> aqui estoy buscando todos los elementos de la coleccion, con el {},'nombre ...' esto definiendo el filtro de los elementos que quiero que me retorne
+    //                              .skip(desde) //=> aqui le estamos indicando la paginacion, desde va a ser el argumento desde donde va a empezar a paginar  
+    //                              .limit(5); //=> el limit 5 le digo que me traiga agrupado de 5 en 5 los registros
+                                  
+    //const total = await Usuario.count(); // aqui estoy contando el total de registros que tiene coleccion o tabla Usuarios
+    
+    /*
+    La siguiente funcion hace lo mismo que las lineas de codigo comentadas de arriba pero, con la diferencia que las de arriba 
+    se ejecutan de forma secuencial y las de abajo al mismo tiempo ambas, lo que hago abajo es esperar que se ejecute la 
+    promesa enviandole un arreglo de funciones a ejecutar, lo asigno a un objeto que me retorna o contiene el resultado de
+    ambas ejecuciones [usuarios, total], los resultados quedan en posicion del arreglo, es decir usuarios contiene todo lo que 
+    retorne el find el skip y el limit y total contiene el countDocuments
+    */
+    const [usuarios, total] = await Promise.all([
+        Usuario
+            .find({}, 'nombre email role google img' ) //=> aqui estoy buscando todos los elementos de la coleccion, con el {},'nombre ...' esto definiendo el filtro de los elementos que quiero que me retorne
+            .skip(desde) //=> aqui le estamos indicando la paginacion, desde va a ser el argumento desde donde va a empezar a paginar  
+            .limit(5), //=> el limit 5 le digo que me traiga agrupado de 5 en 5 los registros
+
+        Usuario.countDocuments() // aqui estoy contando el total de registros que tiene coleccion o tabla Usuarios
+    ])
+
 
     res.json(
         {
             ok:true,
-            usuarios
+            usuarios,
+            total
     });
 }
 
