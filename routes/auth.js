@@ -7,9 +7,10 @@
 
 
 const { Router }  = require('express');
-const { login, googleSignIn } = require('../controllers/auth'); //=>aqui importo los controllers
+const { login, googleSignIn, renewToken } = require('../controllers/auth'); //=>aqui importo los controllers
 const { check } = require('express-validator'); // => aqui importo los check para validar los campos
 const { validarCampos } = require('../middlewares/validar-campos');
+const { validarJWT } = require('../middlewares/validar-jwt');
 
 const router = Router();
 
@@ -21,9 +22,14 @@ router.post('/',[
 ],login );
 
 router.post('/google',[
-    check('token', 'El token de google es obligatorio').not().isEmpty(),
     validarCampos
-],googleSignIn );
+],renewToken
+);
+
+
+router.get('/renew',
+    
+    validarJWT, renewToken );
 
 
 

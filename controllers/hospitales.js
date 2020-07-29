@@ -46,20 +46,82 @@ const crearHospital = async(req, res=response) => {
 
 
 //Metodo put de hospitales
-const actualizarHospital = (req, res) => {
-    res.json({
-        ok:true,
-        msg:'editarHospital'
-    })
+const actualizarHospital = async(req, res) => {
+
+    const id  = req.params.id;
+    const uid = req.uid;
+
+    try {
+
+        const hospital = await Hospital.findById(id);
+
+        if (!hospital){
+            return res.status(404).json({
+                ok:false,
+                msg:"Hospital no encontrado"
+            });
+        }
+
+        hospital.nombre = req.body.nombre; //el primer elemento es el de la base de datos, el segundo es el que llega en el body, esto es una forma de hacerlo cuando hay pocos campos
+
+        const cambiosHospital = {
+            ...req.body,  //aqui obtengo todos los elementos que hay en la peticion o body
+            usuario:uid
+        }
+
+        const hospitalActualizado = await Hospital.findByIdAndUpdate(id, cambiosHospital,{new:true});
+
+
+        res.json({
+            ok:true,
+            msg:'Hospital Acutalizado',
+            hospital: hospitalActualizado
+            
+        });
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok:false,
+            msg:'Error inesperado'
+        });
+    }
+
 
 }
 
 //Metodo delete de hospitales
-const eliminarHospital = (req, res) => {
-    res.json({
-        ok:true,
-        msg:'editarHospital'
-    })
+const eliminarHospital = async(req, res) => {
+
+    const id  = req.params.id;
+
+    try {
+
+        const hospital = await Hospital.findById(id);
+
+        if (!hospital){
+            return res.status(404).json({
+                ok:false,
+                msg:"Hospital no encontrado"
+            });
+        }
+
+        await Hospital.findByIdAndDelete(id);
+
+        res.json({
+            ok:true,
+            msg:'Hospital Eliminado',
+            
+        });
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok:false,
+            msg:'Error inesperado'
+        });
+    }
+
 
 }
 

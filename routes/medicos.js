@@ -26,13 +26,14 @@ router.post('/',[
 
 //ruta para editar un medico
 router.put('/:id',[
-    
-    validarCampos
+    validarJWT,
+    validarCampos,
+    check('nombre', 'El nombre del Medico es Obligatorio').not().isEmpty(),
     ], actualizarMedico);
 
 
 //Ruta para elminiar un usuario
-router.delete('/:id',eliminarMedico);
+router.delete('/:id',eliminarMedico, validarJWT);
 
 
 

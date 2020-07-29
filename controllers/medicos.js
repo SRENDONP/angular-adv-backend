@@ -47,20 +47,82 @@ const crearMedico = async(req, res = response) => {
 
 
 //Metodo put de Medico
-const actualizarMedico = (req, res) => {
-    res.json({
-        ok:true,
-        msg:'editarMedico'
-    })
+const actualizarMedico = async(req, res) => {
+
+    const id  = req.params.id;
+    const uid = req.uid;
+
+    try {
+
+        const medico = await Medico.findById(id);
+
+        if (!medico){
+            return res.status(404).json({
+                ok:false,
+                msg:"Medico no encontrado"
+            });
+        }
+
+        medico.nombre = req.body.nombre; //el primer elemento es el de la base de datos, el segundo es el que llega en el body, esto es una forma de hacerlo cuando hay pocos campos
+
+        const cambiosMedico = {
+            ...req.body,  //aqui obtengo todos los elementos que hay en la peticion o body
+            usuario:uid  //aqui actualizo el campo usuario con el que esta logueado en el momento
+        }
+
+        const medicoActualizado = await Medico.findByIdAndUpdate(id, cambiosMedico,{new:true});
+
+
+        res.json({
+            ok:true,
+            msg:'Medico Acutalizado',
+            medico: medicoActualizado
+            
+        });
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok:false,
+            msg:'Error inesperado'
+        });
+    }
+
 
 }
 
 //Metodo delete de Medico
-const eliminarMedico = (req, res) => {
-    res.json({
-        ok:true,
-        msg:'editarMedico'
-    })
+const eliminarMedico = async(req, res) => {
+
+    const id  = req.params.id;
+
+    try {
+
+        const medico = await Medico.findById(id);
+
+        if (!medico){
+            return res.status(404).json({
+                ok:false,
+                msg:"Medico no encontrado"
+            });
+        }
+
+        await Medico.findByIdAndDelete(id);
+
+        res.json({
+            ok:true,
+            msg:'Medico Eliminado',
+            
+        });
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok:false,
+            msg:'Error inesperado'
+        });
+    }
+
 
 }
 
