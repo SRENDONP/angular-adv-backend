@@ -3,6 +3,7 @@ const bcrypt = require ('bcryptjs');
 
 const Usuario = require('../models/usuario'); //esto me importa el modelo de usuario
 const { generarJWT } = require('../helpers/jwt');
+const { googleVerify } = require('../helpers/google-verify');
 
 const login = async(req, res = response)=> {
 
@@ -49,6 +50,57 @@ const login = async(req, res = response)=> {
 }
 
 
+const googleSignIn = async(req, res = response) => {
+
+    const googleToken = req.body.token;
+
+    try {
+
+        const { name, email, picture } = await googleVerify( googleToken ); // solo estos 3 datos me interesan de la verifcacion de google
+
+        const usuarioDB = await Usuario.findOne({ email });// aqui voy a buscar en la coleccion usuarios si ya el correo ya existe
+        let usuario;
+
+        if (!usuarioDB){ // si usuario no existe voy a crear uno nuevo
+            usuario = new Usuario({
+                nombre: name,
+                email,
+                password:'@@@',
+                img: picture,
+                google:true 
+            });
+        }else{
+            // pero si existe 
+            usuario = usuarioDB;
+            usuario.google= true;
+        }
+
+        //guardo el usuario en la db
+
+        await usuario.save();
+
+        console.log('usuario guardado'+ usuario);
+
+        //Generar el token - JWT
+        const token = await generarJWT(usuario.id);
+
+        res.json({
+            ok:true,
+            token
+        });
+        
+    } catch (error) {
+        res.status(401).json({
+            ok:false,
+            msg:'Error de validacion de token',
+        });
+        
+    }
+    
+}
+
+
 module.exports = {
-    login
+    login,
+    googleSignIn
 }

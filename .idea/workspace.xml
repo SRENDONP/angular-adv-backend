@@ -1,14 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="730dfa50-c360-4793-98a1-542a1c269371" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/controllers/usuarios.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/usuarios.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -19,9 +46,12 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/index.js" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
   </component>
   <component name="RunManager">
     <configuration name="node" type="NodeJSConfigurationType" path-to-js-file="package.json" working-dir="$PROJECT_DIR$">
@@ -37,11 +67,24 @@
       <option name="presentableId" value="Default" />
       <updated>1595962408749</updated>
       <workItem from="1595962410402" duration="357000" />
+      <workItem from="1595986705166" duration="1143000" />
+      <workItem from="1596028922712" duration="1906000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state x="1540" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595962764616">
@@ -60,21 +103,25 @@
       <screen x="1366" y="0" width="1440" height="860" />
     </state>
     <state x="1866" y="185" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1440.860@1366.0.1440.860" timestamp="1595962677656" />
-    <state width="1419" height="222" key="GridCell.Tab.0.bottom" timestamp="1595962766804">
+    <state width="1419" height="222" key="GridCell.Tab.0.bottom" timestamp="1595987859586">
       <screen x="1366" y="0" width="1440" height="860" />
     </state>
-    <state width="1419" height="222" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1440.860@1366.0.1440.860" timestamp="1595962766804" />
-    <state width="1419" height="222" key="GridCell.Tab.0.center" timestamp="1595962766803">
+    <state width="1419" height="222" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1440.860@1366.0.1440.860" timestamp="1595987859586" />
+    <state width="1419" height="222" key="GridCell.Tab.0.center" timestamp="1595987859586">
       <screen x="1366" y="0" width="1440" height="860" />
     </state>
-    <state width="1419" height="222" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1440.860@1366.0.1440.860" timestamp="1595962766803" />
-    <state width="1419" height="222" key="GridCell.Tab.0.left" timestamp="1595962766803">
+    <state width="1419" height="222" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1440.860@1366.0.1440.860" timestamp="1595987859586" />
+    <state width="1419" height="222" key="GridCell.Tab.0.left" timestamp="1595987859586">
       <screen x="1366" y="0" width="1440" height="860" />
     </state>
-    <state width="1419" height="222" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1440.860@1366.0.1440.860" timestamp="1595962766803" />
-    <state width="1419" height="222" key="GridCell.Tab.0.right" timestamp="1595962766803">
+    <state width="1419" height="222" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1440.860@1366.0.1440.860" timestamp="1595987859586" />
+    <state width="1419" height="222" key="GridCell.Tab.0.right" timestamp="1595987859586">
       <screen x="1366" y="0" width="1440" height="860" />
     </state>
-    <state width="1419" height="222" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1440.860@1366.0.1440.860" timestamp="1595962766803" />
+    <state width="1419" height="222" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1440.860@1366.0.1440.860" timestamp="1595987859586" />
+    <state x="1587" y="75" key="SettingsEditor" timestamp="1595987821422">
+      <screen x="1366" y="0" width="1440" height="860" />
+    </state>
+    <state x="1587" y="75" key="SettingsEditor/0.0.1366.728/1366.0.1440.860@1366.0.1440.860" timestamp="1595987821422" />
   </component>
 </project>
