@@ -41,7 +41,7 @@ app.use( '/api/upload', require('./routes/uploads') );
 //lo ultimo
 app.get('*', (req, res) => {
     res.sendFile(path.resolve( __dirname, 'public/index.html'));
-}
+});
 
 app.listen(process.env.PORT, () => {
     console.log('servidor corriendo en el puerto 3000');
